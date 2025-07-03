@@ -1,0 +1,29 @@
+# Arquivos de configuração sensíveis
+.streamlit/secrets.toml
+.env
+*.env
+.env.local
+.env.production
+
+# Arquivos de cache e temporários
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.pytest_cache/
+.coverage
+
+# Diretórios do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
