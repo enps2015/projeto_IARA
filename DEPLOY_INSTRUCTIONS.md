@@ -20,7 +20,7 @@ Repositório: **https://github.com/enps2015/projeto_IARA**
 Antes de finalizar o deploy, vá em **"Advanced settings"** > **"Secrets"** e adicione:
 
 ```toml
-GEMINI_API_KEY = "AIzaSyAZH7CofV0rqC9mymrBTr-itPQVOJMqzD0"
+GEMINI_API_KEY = "SUBSTITUA_PELA_CHAVE_CONFIGURADA_NO_AMBIENTE"
 ```
 
 ### 4️⃣ Deploy!
