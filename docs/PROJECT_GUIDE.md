@@ -97,7 +97,7 @@ Construir uma aplicação web interativa com Streamlit que sirva como um portfó
 
 ### **API Key**
 
-- A chave `AIzaSyAZH7CofV0rqC9mymrBTr-itPQVOJMqzD0` será armazenada em `.streamlit/secrets.toml` no seguinte formato:
+- A chave `SUBSTITUA_PELA_CHAVE_CONFIGURADA_NO_AMBIENTE` será armazenada em `.streamlit/secrets.toml` no seguinte formato:
   ```toml
-  GEMINI_API_KEY = "AIzaSyAZH7CofV0rqC9mymrBTr-itPQVOJMqzD0"
+  GEMINI_API_KEY = "SUBSTITUA_PELA_CHAVE_CONFIGURADA_NO_AMBIENTE"
   ```
