@@ -1,0 +1,52 @@
+name: Testes do Projeto IARA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "app.py"
+      - "src/**"
+      - "tests/**"
+      - "data/**"
+      - "requirements.txt"
+      - ".github/workflows/tests.yml"
+  pull_request:
+    paths:
+      - "app.py"
+      - "src/**"
+      - "tests/**"
+      - "data/**"
+      - "requirements.txt"
+      - ".github/workflows/tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: projeto-iara-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Pytest · Python 3.13
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Instalar dependências declaradas
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Executar testes automatizados
+        run: python -m pytest -q
