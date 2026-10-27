@@ -34,13 +34,18 @@ def _standardize_categorical_values(df: pd.DataFrame) -> pd.DataFrame:
 def _handle_outliers(df: pd.DataFrame) -> pd.DataFrame:
     """Trata outliers nas colunas numéricas."""
     
-    # 1. Tratar chuvas: valores negativos para 0, valores > 700mm para valor plausível
+    # 1. Tratar chuvas: valores negativos para 0; picos extremos são limitados a 200 mm/dia
     if 'chuvas_reais_mm' in df.columns:
         # Chuvas negativas = 0 (impossível chover negativo)
         df['chuvas_reais_mm'] = np.where(df['chuvas_reais_mm'] < 0, 0, df['chuvas_reais_mm'])
-        # Chuvas muito altas (>500mm em um dia) = substituir pela mediana
-        median_rain = df['chuvas_reais_mm'].median()
-        df['chuvas_reais_mm'] = np.where(df['chuvas_reais_mm'] > 500, median_rain, df['chuvas_reais_mm'])
+        # Picos acima de 500 mm/dia são tratados pela regra explícita do projeto:
+        # limitar a 200 mm/dia para evitar que registros extremos dominem a análise.
+        # Esse limite é uma regra de tratamento do dataset, não um valor observado.
+        df['chuvas_reais_mm'] = np.where(
+            df['chuvas_reais_mm'] > 500,
+            200.0,
+            df['chuvas_reais_mm']
+        )
     
     # 2. Tratar volume de produção: valores muito altos são suspeitos
     if 'volume_producao_tons' in df.columns:
