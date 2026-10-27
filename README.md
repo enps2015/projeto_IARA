@@ -105,17 +105,24 @@ painelImpactoSocioambientalAmazonia/
 ### **Instalação**
 ```bash
 # 1. Clone o repositório
-cd painelImpactoSocioambientalAmazonia/
+git clone https://github.com/enps2015/projeto_IARA.git
+cd projeto_IARA
 
-# 2. Ative o ambiente virtual
-source venv/bin/activate
-# ou no Windows: venv\Scripts\activate
+# 2. Crie e ative o ambiente virtual
+python -m venv .venv
+source .venv/bin/activate
+# Windows (PowerShell): .venv\Scripts\Activate.ps1
 
-# 3. Instale dependências (já incluídas no venv)
-pip install streamlit pandas google-generativeai plotly
+# 3. Instale as dependências declaradas
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 
-# 4. Execute o dashboard
-./venv/bin/streamlit run app.py --server.port 8501
+# 4. Configure os segredos localmente (não faça commit)
+# Copie o modelo de .streamlit/secrets.toml.example para
+# .streamlit/secrets.toml e configure GEMINI_API_KEY somente nele.
+
+# 5. Execute o dashboard
+streamlit run app.py --server.port 8501
 ```
 
 ### **Acesso**
@@ -126,6 +133,19 @@ Browser: Qualquer navegador moderno
 ```
 
 ---
+
+## 🧪 Testes e integração contínua
+
+Os testes de processamento e qualidade de dados são executados com `pytest`. O GitHub Actions instala as dependências declaradas em `requirements.txt` e executa a suíte a cada pull request e quando arquivos relevantes mudam na branch principal.
+
+### Executar localmente
+
+```bash
+python -m pip install -r requirements.txt
+python -m pytest -q
+```
+
+Os arquivos `__pycache__`, `.pyc` e o cache do pytest são artefatos gerados durante a execução; eles são ignorados pelo Git e não devem ser versionados.
 
 ## 🎨 DESIGN SYSTEM
 
