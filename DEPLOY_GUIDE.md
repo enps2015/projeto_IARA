@@ -29,7 +29,7 @@ git push
 ### 3️⃣ Configurar Secrets (OBRIGATÓRIO)
 No painel do Streamlit Cloud, vá em "Settings" > "Secrets" e adicione:
 ```toml
-GEMINI_API_KEY = "AIzaSyAZH7CofV0rqC9mymrBTr-itPQVOJMqzD0"
+GEMINI_API_KEY = "SUBSTITUA_PELA_CHAVE_CONFIGURADA_NO_AMBIENTE"
 ```
 
 ## ✅ VERIFICAÇÕES FINAIS
